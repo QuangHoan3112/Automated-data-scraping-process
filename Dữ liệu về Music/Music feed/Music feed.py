@@ -4,9 +4,6 @@ import json
 # Nhập ID của âm nhạc từ người dùng
 music_id = input("Nhập Music ID: ")
 
-# Nhập số lượng truy vấn từ người dùng
-max_cursor = input("Nhập số lượng truy vấn: ")
-
 # URL API
 url = f"https://tiktok-scrapper-videos-music-challenges-downloader.p.rapidapi.com/music/{music_id}/feed"
 
@@ -20,7 +17,7 @@ headers = {
 }
 
 # Gửi request và nhận response
-response = requests.get(url, headers=headers, params=querystring)
+response = requests.get(url, headers=headers)
 
 # Kiểm tra mã trạng thái của response
 if response.status_code == 200:
