@@ -32,7 +32,33 @@ class Following:
         self.twitter_id = twitter_id
 
 # Chuyển đổi dữ liệu JSON thành các đối tượng Python của lớp Following
-followings = [Following(**following_data) for following_data in data["data"]["followings"]]
+followings = []
+for following_data in data["data"]["followings"]:
+    # Tạo một dictionary mới chỉ với các trường cần thiết
+    filtered_data = {
+        'id': following_data.get('id'),
+        'region': following_data.get('region'),
+        'sec_uid': following_data.get('sec_uid'),
+        'unique_id': following_data.get('unique_id'),
+        'nickname': following_data.get('nickname'),
+        'signature': following_data.get('signature'),
+        'avatar': following_data.get('avatar'),
+        'verified': following_data.get('verified'),
+        'secret': following_data.get('secret'),
+        'aweme_count': following_data.get('aweme_count'),
+        'follower_count': following_data.get('follower_count'),
+        'favoriting_count': following_data.get('favoriting_count'),
+        'total_favorited': following_data.get('total_favorited'),
+        'ins_id': following_data.get('ins_id'),
+        'youtube_channel_title': following_data.get('youtube_channel_title'),
+        'youtube_channel_id': following_data.get('youtube_channel_id'),
+        'twitter_name': following_data.get('twitter_name'),
+        'twitter_id': following_data.get('twitter_id'),
+    }
+    
+    # Khởi tạo đối tượng Following từ filtered_data
+    following_obj = Following(**filtered_data)
+    followings.append(following_obj)
 
 # Duyệt qua danh sách followings và in ra các thuộc tính của từng đối tượng
 for following in followings:
@@ -52,5 +78,4 @@ for following in followings:
     print(f"Twitter name: {following.twitter_name}")
     print(f"Twitter ID: {following.twitter_id}")
     print()
-
 
