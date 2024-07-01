@@ -1,18 +1,39 @@
 import json
 
-# Đường dẫn đến file output
+class Follower:
+    def __init__(self, id, region, sec_uid, unique_id, nickname, signature, avatar, verified, secret, aweme_count, follower_count, favoriting_count, total_favorited, ins_id, youtube_channel_title, youtube_channel_id, twitter_name, twitter_id):
+        self.id = id
+        self.region = region
+        self.sec_uid = sec_uid
+        self.unique_id = unique_id
+        self.nickname = nickname
+        self.signature = signature
+        self.avatar = avatar
+        self.verified = verified
+        self.secret = secret
+        self.aweme_count = aweme_count
+        self.follower_count = follower_count
+        self.favoriting_count = favoriting_count
+        self.total_favorited = total_favorited
+        self.ins_id = ins_id
+        self.youtube_channel_title = youtube_channel_title
+        self.youtube_channel_id = youtube_channel_id
+        self.twitter_name = twitter_name
+        self.twitter_id = twitter_id
+
+# Tên file output
 user_id = input("Nhập ID người dùng: ")
 output_file = f"tiktok_user_{user_id}_followers.json"
 
-# Đọc dữ liệu từ file JSON
+# Đọc dữ liệu từ file JSON và xử lý
 with open(output_file, 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-# Chuyển đổi dữ liệu JSON thành các đối tượng Python (sử dụng class Follower đã định nghĩa)
-followers = [Follower(**follower_data) for follower_data in data["data"]["followers"]]
+followers_data = data["data"]["followers"]
 
-# In ra thông tin của một số người theo dõi đầu tiên
-for follower in followers:
+# In ra thông tin của từng người theo dõi
+for follower_data in followers_data:
+    follower = Follower(**follower_data)
     print(f"Follower {follower.unique_id}:")
     print(f" - Region: {follower.region}")
     print(f" - Sec UID: {follower.sec_uid}")
@@ -32,6 +53,9 @@ for follower in followers:
     print(f" - Twitter name: {follower.twitter_name}")
     print(f" - Twitter ID: {follower.twitter_id}")
     print()
+
+# In tổng số người theo dõi
+print(f"Total followers: {data['data']['total']}")
 
 # In tổng số người theo dõi
 print(f"Total followers: {data['data']['total']}")
