@@ -7,9 +7,6 @@ challenge_id = input("Nhập id challenge: ")
 # URL API
 url = f"https://tiktok-scrapper-videos-music-challenges-downloader.p.rapidapi.com/challenge/id/{challenge_id}/feed"
 
-# Thông tin querystring
-querystring = {"max_cursor": max_cursor}
-
 # Headers
 headers = {
     "x-rapidapi-key": "6b6ca08709mshc0be3cb9d1c6b4bp11a949jsnc754d60f18a3",
@@ -17,7 +14,7 @@ headers = {
 }
 
 # Gửi request và nhận response
-response = requests.get(url, headers=headers, params=querystring)
+response = requests.get(url, headers=headers)
 
 # Kiểm tra mã trạng thái của response
 if response.status_code == 200:
