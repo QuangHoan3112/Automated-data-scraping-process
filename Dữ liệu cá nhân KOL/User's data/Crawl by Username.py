@@ -22,7 +22,7 @@ if response.status_code == 200:
     data = response.json()
     
     # Lưu dữ liệu JSON vào file với tên dựa trên nickname
-    output_file = f"{nickname}_tiktok_data.json"
+    output_file = f"user_{nickname}_tiktok_data.json"
     with open(output_file, 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False, indent=4)
     print(f"Dữ liệu đã được lưu vào file {output_file}")
