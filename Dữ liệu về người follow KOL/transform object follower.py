@@ -8,7 +8,7 @@ class Follower:
         self.unique_id = unique_id
         self.nickname = nickname
         self.signature = signature
-        self.avatar = avatar
+        self.avatar = avatar  # Ensure the 'avatar' field is correctly handled in JSON data
         self.verified = verified
         self.secret = secret
         self.aweme_count = aweme_count
@@ -21,8 +21,10 @@ class Follower:
         self.twitter_name = twitter_name
         self.twitter_id = twitter_id
 
-# Tên file output
+# Nhập ID người dùng từ người dùng
 user_id = input("Nhập ID người dùng: ")
+
+# Xây dựng tên file dựa trên user_id
 output_file = f"tiktok_user_{user_id}_followers.json"
 
 # Đọc dữ liệu từ file JSON và xử lý
@@ -33,7 +35,26 @@ followers_data = data["data"]["followers"]
 
 # In ra thông tin của từng người theo dõi
 for follower_data in followers_data:
-    follower = Follower(**follower_data)
+    follower = Follower(
+        id=follower_data.get('id'),
+        region=follower_data.get('region'),
+        sec_uid=follower_data.get('secUid'),
+        unique_id=follower_data.get('uniqueId'),
+        nickname=follower_data.get('nickname'),
+        signature=follower_data.get('signature'),
+        avatar=follower_data.get('avatar'),
+        verified=follower_data.get('verified'),
+        secret=follower_data.get('secret'),
+        aweme_count=follower_data.get('awemeCount'),
+        follower_count=follower_data.get('followerCount'),
+        favoriting_count=follower_data.get('favoritingCount'),
+        total_favorited=follower_data.get('totalFavorited'),
+        ins_id=follower_data.get('insId'),
+        youtube_channel_title=follower_data.get('youtubeChannelTitle'),
+        youtube_channel_id=follower_data.get('youtubeChannelId'),
+        twitter_name=follower_data.get('twitterName'),
+        twitter_id=follower_data.get('twitterId')
+    )
     print(f"Follower {follower.unique_id}:")
     print(f" - Region: {follower.region}")
     print(f" - Sec UID: {follower.sec_uid}")
@@ -56,7 +77,3 @@ for follower_data in followers_data:
 
 # In tổng số người theo dõi
 print(f"Total followers: {data['data']['total']}")
-
-# In tổng số người theo dõi
-print(f"Total followers: {data['data']['total']}")
-
