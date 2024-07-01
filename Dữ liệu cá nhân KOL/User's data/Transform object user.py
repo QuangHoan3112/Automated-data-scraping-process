@@ -34,12 +34,13 @@ class User:
 import json
 
 # Tên file output
-user_id = input("Nhập ID người dùng: ")
-output_file = f"user_{user_id}_tiktok_data.json"
+nickname = input("Nhập nickname người dùng: ")
+output_file = f"user_{nickname}_tiktok_data.json"
 
 # Đọc dữ liệu từ file JSON và phân tích thành dictionary
 with open(output_file, 'r', encoding='utf-8') as file:
     json_data = json.load(file)
+
 
 # Tạo đối tượng User từ dữ liệu JSON
 user_data = data["data"]["user"]
