@@ -4,9 +4,6 @@ import json
 # Nhập challenge_id từ người dùng
 challenge_id = input("Nhập id challenge: ")
 
-# Nhập số lượng truy vấn từ người dùng
-max_cursor = input("Nhập số lượng truy vấn: ")
-
 # URL API
 url = f"https://tiktok-scrapper-videos-music-challenges-downloader.p.rapidapi.com/challenge/id/{challenge_id}/feed"
 
