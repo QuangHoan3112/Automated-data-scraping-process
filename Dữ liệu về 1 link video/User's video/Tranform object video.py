@@ -57,15 +57,15 @@ class Response:
         self.processed_time = processed_time
         self.data = Data(**data)
 
-# Dữ liệu JSON
-import json
+# Tên file output
+video_id = input("Nhập ID Video : ")
+output_file = f"tiktok_video_{video_id}_details.json"
 
-# Đường dẫn đến file JSON chứa dữ liệu
-file_path = "path/to/your/file.json"  #Note: đường truyền này có sau khi code kia chạy xong
-
-# Đọc dữ liệu từ file JSON
-with open(file_path, "r", encoding="utf-8") as file:
+# Đọc dữ liệu từ file JSON và xử lý
+with open(output_file, 'r', encoding='utf-8') as file:
     json_data = json.load(file)
+
+# Tạo đối tượng Response từ dữ liệu JSON
 response = Response(**json_data)
 
 # Truy cập các thuộc tính của đối tượng Following
