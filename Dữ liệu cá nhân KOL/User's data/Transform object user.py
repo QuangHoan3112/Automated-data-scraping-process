@@ -1,3 +1,5 @@
+import json
+
 class Avatar:
     def __init__(self, uri, url_list):
         self.uri = uri
@@ -31,22 +33,19 @@ class User:
         self.verification_type = verification_type
         self.video_icon = Avatar(**video_icon)
 
-import json
-
 # Tên file output
-nickname = input("Nhập nickname người dùng: ")
-output_file = f"user_{nickname}_tiktok_data.json"
+user_id = input("Nhập ID người dùng: ")
+data_file = f"user_{user_id}_tiktok_data.json"
 
 # Đọc dữ liệu từ file JSON và phân tích thành dictionary
-with open(output_file, 'r', encoding='utf-8') as file:
+with open(data_file, 'r', encoding='utf-8') as file:
     json_data = json.load(file)
 
-
 # Tạo đối tượng User từ dữ liệu JSON
-user_data = data["data"]["user"]
+user_data = json_data["data"]["user"]
 user_object = User(
-    data["status"],
-    data["data"]["status_code"],
+    json_data["status"],
+    json_data["data"]["status_code"],
     user_data["avatar_168x168"],
     user_data["avatar_300x300"],
     user_data["avatar_larger"],
@@ -122,4 +121,5 @@ print("URI:", user_object.video_icon.uri)
 print("URL list:")
 for url in user_object.video_icon.url_list:
     print(url)
+
 
