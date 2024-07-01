@@ -4,14 +4,9 @@ import json
 # Nhập tên của challenge từ người dùng
 challenge_name = input("Nhập tên của challenge: ")
 
-# Nhập số lượng truy vấn từ người dùng
-max_cursor = input("Nhập số lượng truy vấn: ")
-
 # URL API
 url = f"https://tiktok-scrapper-videos-music-challenges-downloader.p.rapidapi.com/challenge/{challenge_name}/feed"
 
-# Thông tin querystring
-querystring = {"max_cursor": max_cursor}
 
 # Headers
 headers = {
@@ -20,7 +15,7 @@ headers = {
 }
 
 # Gửi request và nhận response
-response = requests.get(url, headers=headers, params=querystring)
+response = requests.get(url, headers=headers)
 
 # Kiểm tra mã trạng thái của response
 if response.status_code == 200:
