@@ -21,10 +21,11 @@ if response.status_code == 200:
     # Chuyển đổi response thành JSON
     data = response.json()
     
-    # Lưu dữ liệu JSON vào file
-    with open('/mnt/data/output.json', 'w', encoding='utf-8') as json_file:
+    # Lưu dữ liệu JSON vào file với tên dựa trên nickname
+    output_file = f"{nickname}_tiktok_data.json"
+    with open(output_file, 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False, indent=4)
-    print("Dữ liệu đã được lưu vào file output.json")
+    print(f"Dữ liệu đã được lưu vào file {output_file}")
 else:
     print("Yêu cầu API không thành công. Mã trạng thái:", response.status_code)
     print("Nội dung response:", response.text)
