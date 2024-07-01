@@ -4,14 +4,8 @@ import json
 # Nhập keyword từ người dùng
 keyword = input("Nhập keyword cần tìm: ")
 
-# Nhập số lượng truy vấn từ người dùng
-max_cursor = input("Nhập số lượng truy vấn: ")
-
 # URL API
 url = f"https://tiktok-scrapper-videos-music-challenges-downloader.p.rapidapi.com/search/challenge/{keyword}"
-
-# Thông tin querystring
-querystring = {"max_cursor": max_cursor}
 
 # Headers
 headers = {
@@ -20,7 +14,7 @@ headers = {
 }
 
 # Gửi request và nhận response
-response = requests.get(url, headers=headers, params=querystring)
+response = requests.get(url, headers=headers)
 
 # Kiểm tra mã trạng thái của response
 if response.status_code == 200:
