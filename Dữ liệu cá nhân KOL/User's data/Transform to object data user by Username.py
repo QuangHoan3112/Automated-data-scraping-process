@@ -1,22 +1,23 @@
 import json
 
 class Avatar:
-    def __init__(self, uri, url_list):
+    def __init__(self, uri=None, url_list=None):
         self.uri = uri
-        self.url_list = url_list
+        self.url_list = url_list if url_list is not None else []
 
 class User:
-    def __init__(self, status, status_code, avatar_168x168, avatar_300x300, avatar_larger, avatar_medium, avatar_thumb,
-                 follower_count, following_count, nickname, original_musician, privacy_setting, sec_uid, share_info,
-                 short_id, signature_language, tab_settings, total_favorited, uid, unique_id, verification_type,
-                 video_icon):
+    def __init__(self, status=None, status_code=None, avatar_168x168=None, avatar_300x300=None, avatar_larger=None,
+                 avatar_medium=None, avatar_thumb=None, follower_count=None, following_count=None, nickname=None,
+                 original_musician=None, privacy_setting=None, sec_uid=None, share_info=None, short_id=None,
+                 signature_language=None, tab_settings=None, total_favorited=None, uid=None, unique_id=None,
+                 verification_type=None, video_icon=None):
         self.status = status
         self.status_code = status_code
-        self.avatar_168x168 = Avatar(**avatar_168x168)
-        self.avatar_300x300 = Avatar(**avatar_300x300)
-        self.avatar_larger = Avatar(**avatar_larger)
-        self.avatar_medium = Avatar(**avatar_medium)
-        self.avatar_thumb = Avatar(**avatar_thumb)
+        self.avatar_168x168 = Avatar(**(avatar_168x168 if avatar_168x168 else {}))
+        self.avatar_300x300 = Avatar(**(avatar_300x300 if avatar_300x300 else {}))
+        self.avatar_larger = Avatar(**(avatar_larger if avatar_larger else {}))
+        self.avatar_medium = Avatar(**(avatar_medium if avatar_medium else {}))
+        self.avatar_thumb = Avatar(**(avatar_thumb if avatar_thumb else {}))
         self.follower_count = follower_count
         self.following_count = following_count
         self.nickname = nickname
@@ -31,7 +32,7 @@ class User:
         self.uid = uid
         self.unique_id = unique_id
         self.verification_type = verification_type
-        self.video_icon = Avatar(**video_icon)
+        self.video_icon = Avatar(**(video_icon if video_icon else {}))
 
 # Tên file output
 username = input("Nhập username người dùng: ")
@@ -44,28 +45,28 @@ with open(data_file, 'r', encoding='utf-8') as file:
 # Tạo đối tượng User từ dữ liệu JSON
 user_data = json_data["data"]["user"]
 user_object = User(
-    json_data["status"],
-    json_data["data"]["status_code"],
-    user_data["avatar_168x168"],
-    user_data["avatar_300x300"],
-    user_data["avatar_larger"],
-    user_data["avatar_medium"],
-    user_data["avatar_thumb"],
-    user_data["follower_count"],
-    user_data["following_count"],
-    user_data["nickname"],
-    user_data["original_musician"],
-    user_data["privacy_setting"],
-    user_data["sec_uid"],
-    user_data["share_info"],
-    user_data["short_id"],
-    user_data["signature_language"],
-    user_data["tab_settings"],
-    user_data["total_favorited"],
-    user_data["uid"],
-    user_data["unique_id"],
-    user_data["verification_type"],
-    user_data["video_icon"]
+    json_data.get("status"),
+    json_data["data"].get("status_code"),
+    user_data.get("avatar_168x168"),
+    user_data.get("avatar_300x300"),
+    user_data.get("avatar_larger"),
+    user_data.get("avatar_medium"),
+    user_data.get("avatar_thumb"),
+    user_data.get("follower_count"),
+    user_data.get("following_count"),
+    user_data.get("nickname"),
+    user_data.get("original_musician"),
+    user_data.get("privacy_setting"),
+    user_data.get("sec_uid"),
+    user_data.get("share_info"),
+    user_data.get("short_id"),
+    user_data.get("signature_language"),
+    user_data.get("tab_settings"),
+    user_data.get("total_favorited"),
+    user_data.get("uid"),
+    user_data.get("unique_id"),
+    user_data.get("verification_type"),
+    user_data.get("video_icon")
 )
 
 # In ra một số thông tin của đối tượng User
@@ -121,4 +122,3 @@ print("URI:", user_object.video_icon.uri)
 print("URL list:")
 for url in user_object.video_icon.url_list:
     print(url)
-
