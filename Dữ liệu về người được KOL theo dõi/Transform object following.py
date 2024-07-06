@@ -9,9 +9,9 @@ with open(input_file, 'r', encoding='utf-8') as json_file:
 
 # Lớp Following
 class Following:
-    def __init__(self, id, region, sec_uid, unique_id, nickname, signature, avatar, verified, secret,
-                 aweme_count, follower_count, favoriting_count, total_favorited, ins_id,
-                 youtube_channel_title, youtube_channel_id, twitter_name, twitter_id):
+    def __init__(self, id=None, region=None, sec_uid=None, unique_id=None, nickname=None, signature=None, avatar=None, verified=None, secret=None,
+                 aweme_count=None, follower_count=None, favoriting_count=None, total_favorited=None, ins_id=None,
+                 youtube_channel_title=None, youtube_channel_id=None, twitter_name=None, twitter_id=None):
         self.id = id
         self.region = region
         self.sec_uid = sec_uid
@@ -36,24 +36,24 @@ followings = []
 for following_data in data["data"]["followings"]:
     # Tạo một dictionary mới chỉ với các trường cần thiết
     filtered_data = {
-        'id': following_data.get('id'),
-        'region': following_data.get('region'),
-        'sec_uid': following_data.get('sec_uid'),
-        'unique_id': following_data.get('unique_id'),
-        'nickname': following_data.get('nickname'),
-        'signature': following_data.get('signature'),
-        'avatar': following_data.get('avatar'),
-        'verified': following_data.get('verified'),
-        'secret': following_data.get('secret'),
-        'aweme_count': following_data.get('aweme_count'),
-        'follower_count': following_data.get('follower_count'),
-        'favoriting_count': following_data.get('favoriting_count'),
-        'total_favorited': following_data.get('total_favorited'),
-        'ins_id': following_data.get('ins_id'),
-        'youtube_channel_title': following_data.get('youtube_channel_title'),
-        'youtube_channel_id': following_data.get('youtube_channel_id'),
-        'twitter_name': following_data.get('twitter_name'),
-        'twitter_id': following_data.get('twitter_id'),
+        'id': following_data.get('id', None),
+        'region': following_data.get('region', None),
+        'sec_uid': following_data.get('sec_uid', None),
+        'unique_id': following_data.get('unique_id', None),
+        'nickname': following_data.get('nickname', None),
+        'signature': following_data.get('signature', None),
+        'avatar': following_data.get('avatar', None),
+        'verified': following_data.get('verified', None),
+        'secret': following_data.get('secret', None),
+        'aweme_count': following_data.get('aweme_count', None),
+        'follower_count': following_data.get('follower_count', None),
+        'favoriting_count': following_data.get('favoriting_count', None),
+        'total_favorited': following_data.get('total_favorited', None),
+        'ins_id': following_data.get('ins_id', None),
+        'youtube_channel_title': following_data.get('youtube_channel_title', None),
+        'youtube_channel_id': following_data.get('youtube_channel_id', None),
+        'twitter_name': following_data.get('twitter_name', None),
+        'twitter_id': following_data.get('twitter_id', None),
     }
     
     # Khởi tạo đối tượng Following từ filtered_data
@@ -79,3 +79,5 @@ for following in followings:
     print(f"Twitter ID: {following.twitter_id}")
     print()
 
+# In tổng số người theo dõi
+print(f"Total followings: {data['data'].get('total', None)}")
