@@ -1,37 +1,37 @@
 import json
 
-# Định nghĩa lớp Comment
-class Comment:
-    def __init__(self, data):
-        self.id = data['id']
-        self.text = data['text']
-        self.create_time = data['create_time']
-        self.digg_count = data['digg_count']
-        self.reply_total = data['reply_total']
-        self.user = User(data['user'])
-        self.status = data['status']
-
 # Định nghĩa lớp User
 class User:
     def __init__(self, data):
-        self.id = data['id']
-        self.region = data['region']
-        self.sec_uid = data['sec_uid']
-        self.unique_id = data['unique_id']
-        self.nickname = data['nickname']
-        self.signature = data['signature']
-        self.avatar = data['avatar']
-        self.verified = data['verified']
-        self.secret = data['secret']
-        self.aweme_count = data['aweme_count']
-        self.follower_count = data['follower_count']
-        self.favoriting_count = data['favoriting_count']
-        self.total_favorited = data['total_favorited']
-        self.ins_id = data['ins_id']
-        self.youtube_channel_title = data['youtube_channel_title']
-        self.youtube_channel_id = data['youtube_channel_id']
-        self.twitter_name = data['twitter_name']
-        self.twitter_id = data['twitter_id']
+        self.id = data.get('id', None)
+        self.region = data.get('region', None)
+        self.sec_uid = data.get('sec_uid', None)
+        self.unique_id = data.get('unique_id', None)
+        self.nickname = data.get('nickname', None)
+        self.signature = data.get('signature', None)
+        self.avatar = data.get('avatar', None)
+        self.verified = data.get('verified', None)
+        self.secret = data.get('secret', None)
+        self.aweme_count = data.get('aweme_count', None)
+        self.follower_count = data.get('follower_count', None)
+        self.favoriting_count = data.get('favoriting_count', None)
+        self.total_favorited = data.get('total_favorited', None)
+        self.ins_id = data.get('ins_id', None)
+        self.youtube_channel_title = data.get('youtube_channel_title', None)
+        self.youtube_channel_id = data.get('youtube_channel_id', None)
+        self.twitter_name = data.get('twitter_name', None)
+        self.twitter_id = data.get('twitter_id', None)
+
+# Định nghĩa lớp Comment
+class Comment:
+    def __init__(self, data):
+        self.id = data.get('id', None)
+        self.text = data.get('text', None)
+        self.create_time = data.get('create_time', None)
+        self.digg_count = data.get('digg_count', None)
+        self.reply_total = data.get('reply_total', None)
+        self.user = User(data.get('user', {}))
+        self.status = data.get('status', None)
 
 # Tên file output
 video_id = input("Nhập ID Video: ")
@@ -45,7 +45,7 @@ with open(output_file, 'r', encoding='utf-8') as file:
 data = json.loads(json_data)
 
 # Lấy danh sách các comment từ dữ liệu
-comments_data = data['data']['comments']
+comments_data = data['data'].get('comments', [])
 
 # Tạo danh sách các đối tượng Comment từ dữ liệu
 comments = [Comment(comment_data) for comment_data in comments_data]
@@ -67,17 +67,4 @@ for comment in comments:
     print(f"User Avatar URL: {comment.user.avatar}")
     print(f"User Verified: {comment.user.verified}")
     print(f"User Secret: {comment.user.secret}")
-    print(f"User Aweme Count: {comment.user.aweme_count}")
-    print(f"User Follower Count: {comment.user.follower_count}")
-    print(f"User Favoriting Count: {comment.user.favoriting_count}")
-    print(f"User Total Favorited: {comment.user.total_favorited}")
-    print(f"User Instagram ID: {comment.user.ins_id}")
-    print(f"User YouTube Channel Title: {comment.user.youtube_channel_title}")
-    print(f"User YouTube Channel ID: {comment.user.youtube_channel_id}")
-    print(f"User Twitter Name: {comment.user.twitter_name}")
-    print(f"User Twitter ID: {comment.user.twitter_id}")
-
-    print()
-    
-    print()
-
+    print(f"User Aweme
