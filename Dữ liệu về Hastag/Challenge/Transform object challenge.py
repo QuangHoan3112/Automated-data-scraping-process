@@ -2,7 +2,7 @@ import json
 
 # Define classes for JSON data
 class ChallengeInfo:
-    def __init__(self, view_count, hashtag_profile, type, user_count, cid, cha_name):
+    def __init__(self, view_count=None, hashtag_profile=None, type=None, user_count=None, cid=None, cha_name=None):
         self.view_count = view_count
         self.hashtag_profile = hashtag_profile
         self.type = type
@@ -11,7 +11,7 @@ class ChallengeInfo:
         self.cha_name = cha_name
 
 class ChallengeData:
-    def __init__(self, status, data):
+    def __init__(self, status=None, data=None):
         self.status = status
         self.data = data
 
@@ -20,9 +20,9 @@ def load_challenge_data(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         data_dict = json.load(file)
     
-    status = data_dict["status"]
-    challenge_info = data_dict["data"]["ch_info"]
-    
+    status = data_dict.get("status")
+    challenge_info = data_dict.get("data", {}).get("ch_info", {})
+
     challenge_data = ChallengeData(status, ChallengeInfo(**challenge_info))
     return challenge_data
 
