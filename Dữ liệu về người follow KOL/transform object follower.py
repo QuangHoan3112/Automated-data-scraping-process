@@ -36,24 +36,24 @@ followers_data = data["data"]["followers"]
 # In ra thông tin của từng người theo dõi
 for follower_data in followers_data:
     follower = Follower(
-        id=follower_data.get('id'),
-        region=follower_data.get('region'),
-        sec_uid=follower_data.get('secUid'),
-        unique_id=follower_data.get('uniqueId'),
-        nickname=follower_data.get('nickname'),
-        signature=follower_data.get('signature'),
-        avatar=follower_data.get('avatar'),
-        verified=follower_data.get('verified'),
-        secret=follower_data.get('secret'),
-        aweme_count=follower_data.get('awemeCount'),
-        follower_count=follower_data.get('followerCount'),
-        favoriting_count=follower_data.get('favoritingCount'),
-        total_favorited=follower_data.get('totalFavorited'),
-        ins_id=follower_data.get('insId'),
-        youtube_channel_title=follower_data.get('youtubeChannelTitle'),
-        youtube_channel_id=follower_data.get('youtubeChannelId'),
-        twitter_name=follower_data.get('twitterName'),
-        twitter_id=follower_data.get('twitterId')
+        id=follower_data.get('id', None),
+        region=follower_data.get('region', None),
+        sec_uid=follower_data.get('secUid', None),
+        unique_id=follower_data.get('uniqueId', None),
+        nickname=follower_data.get('nickname', None),
+        signature=follower_data.get('signature', None),
+        avatar=follower_data.get('avatar', None),
+        verified=follower_data.get('verified', None),
+        secret=follower_data.get('secret', None),
+        aweme_count=follower_data.get('awemeCount', None),
+        follower_count=follower_data.get('followerCount', None),
+        favoriting_count=follower_data.get('favoritingCount', None),
+        total_favorited=follower_data.get('totalFavorited', None),
+        ins_id=follower_data.get('insId', None),
+        youtube_channel_title=follower_data.get('youtubeChannelTitle', None),
+        youtube_channel_id=follower_data.get('youtubeChannelId', None),
+        twitter_name=follower_data.get('twitterName', None),
+        twitter_id=follower_data.get('twitterId', None)
     )
     print(f"Follower {follower.unique_id}:")
     print(f" - Region: {follower.region}")
@@ -76,4 +76,5 @@ for follower_data in followers_data:
     print()
 
 # In tổng số người theo dõi
-print(f"Total followers: {data['data']['total']}")
+print(f"Total followers: {data['data'].get('total', None)}")
+
